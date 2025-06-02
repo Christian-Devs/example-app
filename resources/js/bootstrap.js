@@ -8,6 +8,7 @@ import 'bootstrap';
 
 import axios from 'axios';
 window.axios = axios;
+window.Noty = require('noty');
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 

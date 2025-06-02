@@ -1,7 +1,103 @@
 <template>
     <div>
-        <h1>Welcome to the Home Page</h1>
-        <p>This is the main content area of the home page.</p>
+        <div class="row justify-content-center">
+            <div class="col-xl-10 col-lg-12 col-md-9">
+                <div class="card shadow-sm my-5">
+                    <div class="card-body p-0">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="login-form">
+                                    <div class="text-center">
+                                        <h1 class="h4 text-gray-900 mb-4">All Clients</h1>
+                                    </div>
+                                    <div class="container-fluid" id="container-wrapper">
+                                        <div class="row">
+                                            <div class="col-lg-12 mb-4">
+                                                <!-- Simple Tables -->
+                                                <div class="card">
+                                                    <div class="table-responsive">
+                                                        <table class="table align-items-center table-flush">
+                                                            <thead class="thead-light">
+                                                                <tr>
+                                                                    <th>Order ID</th>
+                                                                    <th>Customer</th>
+                                                                    <th>Item</th>
+                                                                    <th>Status</th>
+                                                                    <th>Action</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td><a href="#">RA0449</a></td>
+                                                                    <td>Udin Wayang</td>
+                                                                    <td>Nasi Padang</td>
+                                                                    <td><span
+                                                                            class="badge badge-success">Delivered</span>
+                                                                    </td>
+                                                                    <td><a href="#"
+                                                                            class="btn btn-sm btn-primary">Detail</a>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><a href="#">RA5324</a></td>
+                                                                    <td>Jaenab Bajigur</td>
+                                                                    <td>Gundam 90' Edition</td>
+                                                                    <td><span
+                                                                            class="badge badge-warning">Shipping</span>
+                                                                    </td>
+                                                                    <td><a href="#"
+                                                                            class="btn btn-sm btn-primary">Detail</a>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><a href="#">RA8568</a></td>
+                                                                    <td>Rivat Mahesa</td>
+                                                                    <td>Oblong T-Shirt</td>
+                                                                    <td><span class="badge badge-danger">Pending</span>
+                                                                    </td>
+                                                                    <td><a href="#"
+                                                                            class="btn btn-sm btn-primary">Detail</a>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><a href="#">RA1453</a></td>
+                                                                    <td>Indri Junanda</td>
+                                                                    <td>Hat Rounded</td>
+                                                                    <td><span class="badge badge-info">Processing</span>
+                                                                    </td>
+                                                                    <td><a href="#"
+                                                                            class="btn btn-sm btn-primary">Detail</a>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><a href="#">RA1998</a></td>
+                                                                    <td>Udin Cilok</td>
+                                                                    <td>Baby Powder</td>
+                                                                    <td><span
+                                                                            class="badge badge-success">Delivered</span>
+                                                                    </td>
+                                                                    <td><a href="#"
+                                                                            class="btn btn-sm btn-primary">Detail</a>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                    <div class="card-footer"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--Row-->
+                                    </div>
+                                    <div class="text-center">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -16,5 +112,4 @@ export default {
 }
 </script>
 
-<style>
-</style>
+<style></style>

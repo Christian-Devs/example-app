@@ -1,5 +1,7 @@
 <?php
+
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ClientController;
 
 Route::group([
     'middleware' => 'api',
@@ -10,3 +12,5 @@ Route::group([
     Route::post('refresh', [AuthController::class, 'refresh']);
     Route::post('me', [AuthController::class, 'me']);
 });
+
+Route::apiResource('/clients', 'Api/ClientController');

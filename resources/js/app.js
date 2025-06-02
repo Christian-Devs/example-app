@@ -10,6 +10,9 @@ import { createRouter, createWebHistory } from 'vue-router';
 import { routes } from './routes';
 import User from './Helpers/User';
 import Swal from 'sweetalert2';
+import Notification from './Helpers/Notification';
+
+window.Notification = Notification;
 
 window.User = User;
 window.Swal = Swal;

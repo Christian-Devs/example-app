@@ -28,10 +28,18 @@
             <div class="sidebar-brand-text mx-3">Artfundi</div>
           </a>
           <hr class="sidebar-divider my-0">
-          <li class="nav-item active">
-            <a class="nav-link" href="index.html">
-              <i class="fas fa-fw fa-tachometer-alt"></i>
-              <span>Clients</span></a>
+          <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap"
+              aria-expanded="true" aria-controls="collapseBootstrap">
+              <i class="far fa-fw fa-window-maximize"></i>
+              <span>Clients</span>
+            </a>
+            <div id="collapseBootstrap" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
+              <div class="bg-white py-2 collapse-inner rounded">
+                <router-link class="collapse-item" to="/add-client">Add Client</router-link>
+                <router-link class="collapse-item" to="/home">All Clients</router-link>
+              </div>
+            </div>
           </li>
           <hr class="sidebar-divider">
           <div class="version" id="version-ruangadmin"></div>
