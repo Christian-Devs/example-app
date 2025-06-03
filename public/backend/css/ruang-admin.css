@@ -1172,11 +1172,11 @@ a:focus {
 }
 
 .sidebar-dark .sidebar-brand {
-  color: #fff;
+  color: black;
 }
 
 .sidebar-dark hr.sidebar-divider {
-  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  border-top: 1px solid rgb(255, 255, 255);
 }
 
 .sidebar-dark .sidebar-heading {

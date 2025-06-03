@@ -1,107 +1,70 @@
 <template>
-    <div>
-        <div class="row justify-content-center">
-            <div class="col-xl-10 col-lg-12 col-md-9">
-                <div class="card shadow-sm my-5">
-                    <div class="card-body p-0">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="login-form">
-                                    <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">All Clients</h1>
-                                    </div>
-                                    <div class="container-fluid" id="container-wrapper">
-                                        <div class="row">
-                                            <div class="col-lg-12 mb-4">
-                                                <!-- Simple Tables -->
-                                                <div class="card">
-                                                    <div class="table-responsive">
-                                                        <table class="table align-items-center table-flush">
-                                                            <thead class="thead-light">
-                                                                <tr>
-                                                                    <th>Order ID</th>
-                                                                    <th>Customer</th>
-                                                                    <th>Item</th>
-                                                                    <th>Status</th>
-                                                                    <th>Action</th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                                <tr>
-                                                                    <td><a href="#">RA0449</a></td>
-                                                                    <td>Udin Wayang</td>
-                                                                    <td>Nasi Padang</td>
-                                                                    <td><span
-                                                                            class="badge badge-success">Delivered</span>
-                                                                    </td>
-                                                                    <td><a href="#"
-                                                                            class="btn btn-sm btn-primary">Detail</a>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td><a href="#">RA5324</a></td>
-                                                                    <td>Jaenab Bajigur</td>
-                                                                    <td>Gundam 90' Edition</td>
-                                                                    <td><span
-                                                                            class="badge badge-warning">Shipping</span>
-                                                                    </td>
-                                                                    <td><a href="#"
-                                                                            class="btn btn-sm btn-primary">Detail</a>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td><a href="#">RA8568</a></td>
-                                                                    <td>Rivat Mahesa</td>
-                                                                    <td>Oblong T-Shirt</td>
-                                                                    <td><span class="badge badge-danger">Pending</span>
-                                                                    </td>
-                                                                    <td><a href="#"
-                                                                            class="btn btn-sm btn-primary">Detail</a>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td><a href="#">RA1453</a></td>
-                                                                    <td>Indri Junanda</td>
-                                                                    <td>Hat Rounded</td>
-                                                                    <td><span class="badge badge-info">Processing</span>
-                                                                    </td>
-                                                                    <td><a href="#"
-                                                                            class="btn btn-sm btn-primary">Detail</a>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td><a href="#">RA1998</a></td>
-                                                                    <td>Udin Cilok</td>
-                                                                    <td>Baby Powder</td>
-                                                                    <td><span
-                                                                            class="badge badge-success">Delivered</span>
-                                                                    </td>
-                                                                    <td><a href="#"
-                                                                            class="btn btn-sm btn-primary">Detail</a>
-                                                                    </td>
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                    <div class="card-footer"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!--Row-->
-                                    </div>
-                                    <div class="text-center">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+    <div class="container-fluid" id="container-wrapper">
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">Client List</h1>
+        </div>
+        <br>
+        <input type="text" v-model="searchTerm" class="form-control" style="width: 30%;" placeholder="Search Here">
+        <br>
+
+        <div class="row">
+            <div class="col-lg-12 mb-4">
+                <!-- Simple Tables -->
+                <div class="card">
+                    <div class="table-responsive">
+                        <table class="table align-items-center table-flush">
+                            <thead style="background-color: #731f08;" class="text-white">
+                                <tr>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr v-for="client in filterSearch" :key="client.id">
+                                    <td>{{ client.first_name }}</td>
+                                    <td>{{ client.last_name }}</td>
+                                    <td>{{ client.email_address }}</td>
+                                    <td>{{ client.telephone }}</td>
+                                    <td><span v-if="client.status == 'active'"
+                                            class="badge badge-success">Active</span><span
+                                            v-if="client.status == 'inactive'"
+                                            class="badge badge-danger">Inactive</span></td>
+                                    <td>
+                                        <router-link :to="{ name: 'edit-client', params: { id: client.id } }"
+                                            class="btn btn-sm btn-primary"
+                                            style="margin-right: .5rem;">Edit</router-link>
+                                        <a @click="softDelete(client.id)"
+                                            class="btn btn-sm btn-danger text-white">Delete</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <!-- Pagination Links -->
+                        <nav aria-label="Page navigation">
+                            <ul class="pagination p-2">
+                                <li v-for="link in clients.links" :key="link.label" class="page-item"
+                                    :class="{ 'active': link.active }">
+                                    <button class="page-link" v-html="link.label" @click="allClients(link.url)"
+                                        :disabled="!link.url || link.active"></button>
+                                </li>
+                            </ul>
+                        </nav>
                     </div>
+                    <div class="card-footer"></div>
                 </div>
             </div>
         </div>
+        <!--Row-->
     </div>
 </template>
 
 <script type="text/javascript">
+import Swal from 'sweetalert2'
+
 
 export default {
     created() {
@@ -109,7 +72,79 @@ export default {
             this.$router.push({ name: '/' })
         }
     },
+    data() {
+        return {
+            clients: [],
+            searchTerm: ''
+        }
+    },
+    computed: {
+        filterSearch() {
+            let clientList = this.clients.data || this.clients;
+            return clientList.filter(client => {
+                return client.first_name.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+                    client.last_name.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+                    client.email_address.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+                    client.telephone.includes(this.searchTerm)
+            })
+        }
+    },
+    methods: {
+        async allClients(url = '/api/clients/') {
+            try {
+                const response = await axios.get(url);
+                this.clients = response.data; // Contains data, links, meta
+            } catch (error) {
+                console.error("There was an error fetching the clients:", error);
+            }
+        },
+        softDelete(id) {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.value) {
+                    axios.delete(`/api/clients/${id}`)
+                        .then(() => {
+                            this.allClients();
+                            Notification.success('Client deleted successfully');
+                        })
+                        .catch(error => {
+                            console.error("There was an error deleting the client:", error);
+                            Notification.error('Failed to delete client');
+                        });
+                    Swal.fire(
+                        'Deleted!',
+                        'Client record has been deleted.',
+                        'success'
+                    )
+                }
+            })
+
+        }
+    },
+    created() {
+        this.allClients();
+    }
 }
 </script>
 
-<style></style>
+<style>
+.pagination {
+    display: flex;
+}
+
+.page-item.active .page-link {
+    background: #F5EEE6;
+    color: #731f08;
+}
+
+.page-link {
+    cursor: pointer;
+}
+</style>

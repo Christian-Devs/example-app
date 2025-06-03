@@ -1,7 +1,8 @@
 <?php
 
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\ClientController;
+use App\Http\Controllers\Api\ClientController;
+use Illuminate\Support\Facades\Route;
 
 Route::group([
     'middleware' => 'api',
@@ -13,4 +14,8 @@ Route::group([
     Route::post('me', [AuthController::class, 'me']);
 });
 
-Route::apiResource('/clients', 'Api/ClientController');
+Route::post('/clients', [ClientController::class, 'store']);
+Route::get('/clients', [ClientController::class, 'index']);
+Route::get('/clients/{id}', [ClientController::class, 'show']);
+Route::delete('/clients/{id}', [ClientController::class, 'destroy']);
+Route::patch('/clients/{id}', [ClientController::class, 'update']);

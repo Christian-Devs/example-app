@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-  <link href="{{asset('backend/img/logo/logo.png')}}" rel="icon">
+  <link href="{{asset('backend/img/logo/favicon.png')}}" rel="icon">
   <title>Artfundi - ClientCRM</title>
   <link href="{{asset('css/app.css')}}" rel="stylesheet" type="text/css">
   <link href="{{asset('backend/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
@@ -18,14 +18,13 @@
 <body id="page-top">
   <div id=app>
     <div id="wrapper">
-      <nav id="sidebar" v-show="$route.path === '/' ? false : true" style="display: none;">
+      <nav id="sidebar" v-show="$route.path === '/' ? false : true" style="display: none; height:100%">
         <!-- Sidebar -->
-        <ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
-          <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+        <ul class="navbar-nav sidebar sidebar-dark accordion" id="accordionSidebar">
+          <a class="sidebar-brand d-flex align-items-center justify-content-center">
             <div class="sidebar-brand-icon">
-              <img src="img/logo/logo2.png">
+              <img src="{{asset('backend/img/logo/Artfundi.svg')}}" style="height: 52px; width:155px">
             </div>
-            <div class="sidebar-brand-text mx-3">Artfundi</div>
           </a>
           <hr class="sidebar-divider my-0">
           <li class="nav-item">
@@ -42,7 +41,6 @@
             </div>
           </li>
           <hr class="sidebar-divider">
-          <div class="version" id="version-ruangadmin"></div>
         </ul>
         <!-- Sidebar -->
       </nav>

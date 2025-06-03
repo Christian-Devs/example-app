@@ -9,9 +9,9 @@
                             <div class="col-lg-12">
                                 <div class="login-form">
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">Add Client</h1>
+                                        <h1 class="h4 text-gray-900 mb-4">Edit Client</h1>
                                     </div>
-                                    <form class="user" @submit.prevent="createClient">
+                                    <form class="user" @submit.prevent="updateClient">
                                         <div class="form-group">
                                             <div class="form-row">
                                                 <div class="col">
@@ -28,6 +28,16 @@
                                                         required>
                                                     <small class="text-danger" v-if="errors.last_name">
                                                         {{ errors.last_name[0] }}
+                                                    </small>
+                                                </div>
+                                                <div class="col">
+                                                    <select class="form-control" v-model="form.status" required>
+                                                        <option value="" disabled selected>Select Status</option>
+                                                        <option value="active">Active</option>
+                                                        <option value="inactive">Inactive</option>
+                                                    </select>
+                                                    <small class="text-danger" v-if="errors.status">
+                                                        {{ errors.status[0] }}
                                                     </small>
                                                 </div>
                                             </div>
@@ -75,7 +85,8 @@
 
 
                                         <div class="form-group">
-                                            <button type="submit" class="btn btn-primary btn-block">Add Client</button>
+                                            <button type="submit" class="btn btn-primary btn-block">Update
+                                                Client</button>
                                         </div>
 
                                     </form>
@@ -114,18 +125,27 @@ export default {
                 email_address: null,
                 id_number: null,
                 date_of_birth: null,
-                status: 'active'
+                uuid: null,
+                status: null
             },
             errors: {}
         }
     },
+    created() {
+        let clientId = this.$route.params.id;
+        axios.get(`/api/clients/${clientId}`)
+            .then(({ data }) => (this.form = data))
+            .catch(error => {
+                console.error('Error fetching client data:', error);
+            });
+    },
     methods: {
-        createClient() {
-            axios.post('/api/clients', this.form)
+        updateClient() {
+            let clientId = this.$route.params.id;
+            axios.patch(`/api/clients/${clientId}`, this.form)
                 .then(() => {
                     this.$router.push({ name: 'home' })
                     Notification.success()
-                    console.log(this.form);
                 })
                 .catch(error => {
                     if (error.response && error.response.status === 422) {
